@@ -1,4 +1,5 @@
 import tkinter as tk
+from math import sqrt  # Importar raíz cuadrada
 
 # --- CONFIGURACIÓN PERSONALIZABLE ---
 FUENTE = ("Arial", 18)
@@ -19,6 +20,17 @@ def calcular():
     try:
         resultado = eval(entrada.get())
         entrada.set(str(resultado))
+    except:
+        entrada.set("Error")
+
+def raiz_cuadrada():
+    try:
+        valor = eval(entrada.get())
+        if valor < 0:
+            entrada.set("Error")
+        else:
+            resultado = sqrt(valor)
+            entrada.set(str(resultado))
     except:
         entrada.set("Error")
 
@@ -48,13 +60,14 @@ botones = [
     ("4", 2, 0), ("5", 2, 1), ("6", 2, 2), ("*", 2, 3),
     ("1", 3, 0), ("2", 3, 1), ("3", 3, 2), ("-", 3, 3),
     ("0", 4, 0), (".", 4, 1), ("+", 4, 2), ("=", 4, 3),
-    ("C", 5, 0), ("←", 5, 1)
+    ("C", 5, 0), ("←", 5, 1), ("√", 5, 2)
 ]
 
 acciones = {
     "C": limpiar,
     "←": borrar_ultimo,
-    "=": calcular
+    "=": calcular,
+    "√": raiz_cuadrada
 }
 
 for (texto, fila, columna) in botones:
